@@ -12,3 +12,11 @@ CREATE TABLE user (
     timestamp   TIMESTAMP,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE pass (
+    id          INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_id     TEXT NOT NULL,
+    point_id    TEXT NOT NULL,
+    timestamp   TIMESTAMP,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

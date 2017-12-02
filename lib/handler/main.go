@@ -2,6 +2,7 @@ package handler
 
 import (
 	"../user"
+	"../pass"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -28,5 +29,17 @@ func Register(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"rank": user.GetRank(created_user.Id),
 		"user": created_user,
+	})
+}
+
+func Pass(ctx *gin.Context) {
+	user_id := ctx.Param("user_id")
+	point_id := ctx.Param("point_id")
+
+	pass.Insert(user_id, point_id)
+
+	ctx.JSON(http.StatusOK, gin.H{
+		"user_id":  user_id,
+		"point_id": point_id,
 	})
 }
