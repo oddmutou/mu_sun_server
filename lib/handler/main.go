@@ -54,3 +54,14 @@ func Pass(ctx *gin.Context) {
 		"point_id": point_id,
 	})
 }
+
+func DeletePass(ctx *gin.Context) {
+	user_id := ctx.Param("user_id")
+
+	deletedPass := pass.Delete(user_id)
+	fmt.Printf("%+v\n", lastPass)
+	ctx.JSON(http.StatusOK, gin.H{
+	        "user_id": deletedPass.UserId,
+	        "point_id": deletedPass.PointId,
+	})
+}

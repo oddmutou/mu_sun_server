@@ -38,3 +38,9 @@ func GetByUserId(user_id string) Pass {
 	engine.Where("user_id = ?", user_id).Desc("timestamp").Get(&pass)
 	return pass
 }
+
+func Delete(user_id int) Pass {
+  pass := Pass{UserId: user_id}
+  engine.Where("user_id = ?", user_id).Delete(&pass)
+  return pass
+}
