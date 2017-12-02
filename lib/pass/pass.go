@@ -32,3 +32,9 @@ func Get(id int) Pass {
 	engine.Get(&pass)
 	return pass
 }
+
+func GetByUserId(user_id string) Pass {
+	var pass Pass
+	engine.Where("user_id = ?", user_id).Desc("timestamp").Get(&pass)
+	return pass
+}

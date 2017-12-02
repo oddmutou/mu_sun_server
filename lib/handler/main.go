@@ -32,6 +32,17 @@ func Register(ctx *gin.Context) {
 	})
 }
 
+func LastPass(ctx *gin.Context) {
+	user_id := ctx.Param("user_id")
+
+	lastPass := pass.GetByUserId(user_id)
+	fmt.Printf("%+v\n", lastPass)
+	ctx.JSON(http.StatusOK, gin.H{
+	        "user_id": lastPass.UserId,
+	        "point_id": lastPass.PointId,
+	})
+}
+
 func Pass(ctx *gin.Context) {
 	user_id := ctx.Param("user_id")
 	point_id := ctx.Param("point_id")
