@@ -1,32 +1,32 @@
 package handler
 
 import (
-    "fmt"
-		"github.com/gin-gonic/gin"
-    "strconv"
-		"net/http"
-    "../user"
+	"../user"
+	"fmt"
+	"github.com/gin-gonic/gin"
+	"net/http"
+	"strconv"
 )
 
-func GetRank (ctx *gin.Context) {
-    user_id, _ := strconv.Atoi(ctx.Param("user_id"))
-    user.GetRank(user_id)
-		selected_user := user.Get(user_id)
+func GetRank(ctx *gin.Context) {
+	user_id, _ := strconv.Atoi(ctx.Param("user_id"))
+	user.GetRank(user_id)
+	selected_user := user.Get(user_id)
 
-		ctx.JSON(http.StatusOK, gin.H{
-				"rank":  user.GetRank(user_id),
-				"user": selected_user,
-		})
+	ctx.JSON(http.StatusOK, gin.H{
+		"rank": user.GetRank(user_id),
+		"user": selected_user,
+	})
 }
 
-func Register (ctx *gin.Context) {
-    var input_user user.User
-		ctx.BindJSON(&input_user)
-		fmt.Printf("%+v", input_user)
-		created_user := user.Insert(input_user.Name, input_user.Score)
+func Register(ctx *gin.Context) {
+	var input_user user.User
+	ctx.BindJSON(&input_user)
+	fmt.Printf("%+v", input_user)
+	created_user := user.Insert(input_user.Name, input_user.Score)
 
-		ctx.JSON(http.StatusOK, gin.H{
-				"rank":  user.GetRank(created_user.Id),
-				"user": created_user,
-		})
+	ctx.JSON(http.StatusOK, gin.H{
+		"rank": user.GetRank(created_user.Id),
+		"user": created_user,
+	})
 }

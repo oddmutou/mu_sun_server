@@ -1,15 +1,15 @@
 package main
 
 import (
-    "github.com/gin-gonic/gin"
-    "./handler"
+	"./handler"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-    router := gin.Default()
+	router := gin.Default()
 
-		router.GET("/user/:user_id/rank", handler.GetRank)
-		router.POST("/register", handler.Register)
+	router.GET("/user/:user_id/rank", handler.GetRank)
+	router.POST("/register", handler.Register)
 
-    router.Run(":8080")
+	router.Run(":8080")
 }
