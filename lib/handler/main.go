@@ -10,23 +10,23 @@ import (
 
 func GetRank (ctx *gin.Context) {
     user_id, _ := strconv.Atoi(ctx.Param("user_id"))
-    user := user.Get(user_id)
-		fmt.Printf("%+v", user)
+    user.GetRank(user_id)
+		selected_user := user.Get(user_id)
 
 		ctx.JSON(http.StatusOK, gin.H{
-				"status":  "get",
-				"user": user,
+				"rank":  user.GetRank(user_id),
+				"user": selected_user,
 		})
 }
 
-
-func RegisterScore (ctx *gin.Context) {
-    user_id, _ := strconv.Atoi(ctx.Param("user_id"))
-    user := user.Get(user_id)
-		fmt.Printf("%+v", user)
+func Register (ctx *gin.Context) {
+    var input_user user.User
+		ctx.BindJSON(&input_user)
+		fmt.Printf("%+v", input_user)
+		created_user := user.Insert(input_user.Name, input_user.Score)
 
 		ctx.JSON(http.StatusOK, gin.H{
-				"status":  "posted",
-				"hoge": "huga",
+				"rank":  user.GetRank(created_user.Id),
+				"user": created_user,
 		})
 }

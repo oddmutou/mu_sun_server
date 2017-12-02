@@ -3,14 +3,15 @@ package user
 import (
     "github.com/go-xorm/xorm"
     _ "github.com/go-sql-driver/mysql"
+		"strconv"
 )
 
 var engine *xorm.Engine
 
 type User struct {
     Id int `xorm:"int pk autoincr 'id'"`
-    Name string `xorm:"name"`
-    Score int `xorm:"score"`
+    Name string `xorm:"name" json:"name" binding:"required"`
+    Score int `xorm:"score" json:"score" binding:"required"`
 }
 
 func init() {
@@ -49,4 +50,10 @@ func GetAll() []User {
     var allUsers []User
     engine.Desc("Id").Limit(50).Find(&allUsers)
     return allUsers
+}
+
+func GetRank(id int) int {
+		hoge, _ := engine.Query("SELECT *, (SELECT COUNT(id) + 1 FROM `user` b WHERE b.SCORE > a.SCORE) AS `rank` FROM `user` a WHERE `id` = ?", id);
+		rank, _ := strconv.Atoi(string(hoge[0]["rank"]))
+		return rank
 }

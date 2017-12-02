@@ -9,7 +9,7 @@ func main() {
     router := gin.Default()
 
 		router.GET("/user/:user_id/rank", handler.GetRank)
-		router.POST("/user/:user_id/score", handler.RegisterScore)
+		router.POST("/register", handler.Register)
 
     router.Run(":8080")
 }
