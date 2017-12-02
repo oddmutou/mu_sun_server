@@ -9,7 +9,7 @@ import (
 var engine *xorm.Engine
 
 type User struct {
-	Id    int    `xorm:"int pk autoincr 'id'"`
+	Id    int    `xorm:"int pk autoincr 'id'" json:"id"`
 	Name  string `xorm:"name" json:"name" binding:"required"`
 	Score int    `xorm:"score" json:"score" binding:"required"`
 }

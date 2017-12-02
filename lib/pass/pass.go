@@ -8,9 +8,9 @@ import (
 var engine *xorm.Engine
 
 type Pass struct {
-	Id int `xorm:"int pk autoincr 'id'"`
-	UserId string `xorm:"user_id"`
-	PointId string `xorm:"point_id"`
+	Id int `xorm:"int pk autoincr 'id'" json:"id"`
+	UserId string `xorm:"user_id" json:"user_id"`
+	PointId string `xorm:"point_id" json:"point_id"`
 }
 
 func init() {
