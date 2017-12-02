@@ -13,6 +13,7 @@ func main() {
 	router.GET("/pass/:user_id/", handler.LastPass)
 	router.POST("/pass/:user_id/:point_id/", handler.Pass)
 	router.DELETE("/pass/:user_id/", handler.DeletePass)
+	router.GET("/users/rank/:limit", handler.GetRanks)
 
 	router.Run(":8080")
 }

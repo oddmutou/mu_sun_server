@@ -81,3 +81,30 @@ $ curl hostname:8080/pass/1/4/ -X POST
   "user_id": "1"
 }
 ```
+
+## GET /users/rank/{limit}
+
+ランキング上位のユーザー一覧を取得します。
+
+```bash
+$ curl hostname:8080/users/rank/3
+{
+  "users": [
+    {
+      "id": 10,
+      "name": "sugoi_hito",
+      "score": 900
+    },
+    {
+      "id": 11,
+      "name": "ababababa",
+      "score": 780
+    },
+    {
+      "id": 3,
+      "name": "piyo",
+      "score": 700
+    }
+  ]
+}
+```

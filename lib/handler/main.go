@@ -61,3 +61,12 @@ func DeletePass(ctx *gin.Context) {
 	        "point_id": deletedPass.PointId,
 	})
 }
+
+func GetRanks(ctx *gin.Context) {
+	limit, _ := strconv.Atoi(ctx.Param("limit"))
+
+	users := user.GetRankUsers(limit)
+	ctx.JSON(http.StatusOK, gin.H{
+		"users": users,
+	})
+}

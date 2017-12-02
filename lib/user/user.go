@@ -57,3 +57,9 @@ func GetRank(id int) int {
 	rank, _ := strconv.Atoi(string(hoge[0]["rank"]))
 	return rank
 }
+
+func GetRankUsers(limit int) []User {
+	var users []User
+	engine.Desc("Score").Limit(limit).Find(&users)
+	return users
+}
